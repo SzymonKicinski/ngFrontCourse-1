@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { IngredientModule } from '../shared/model/ingredient/ingredient.module';
@@ -7,6 +8,7 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
   providedIn: 'root'
 })
 export class RecipeService {
+  recipesChanged = new Subject<Recipe[]>();
 
   private recipesArray: Array<Recipe> = [
     {
@@ -38,6 +40,7 @@ export class RecipeService {
   constructor(private slService: ShoppingListService) { }
 
   getRecipes(): Array<Recipe> {
+    // slice zwraca kopie listy
     return this.recipesArray.slice();
   }
 
@@ -47,5 +50,20 @@ export class RecipeService {
 
   addIngredientsToShoppingList(ingredients: IngredientModule[]) {
     this.slService.addIngredients(ingredients);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipesArray.push(recipe);
+    this.recipesChanged.next(this.recipesArray.slice());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipesArray[index] = newRecipe;
+    this.recipesChanged.next(this.recipesArray.slice());
+  }
+
+  deletedRecipe(index: number) {
+    this.recipesArray.splice(index, 1);
+    this.recipesChanged.next(this.recipesArray.slice());
   }
 }
