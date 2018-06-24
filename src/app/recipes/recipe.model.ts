@@ -1,4 +1,4 @@
-import { IngredientModule } from "../shared/model/ingredient/ingredient.module";
+import { IngredientModule } from '../shared/model/ingredient/ingredient.module';
 
 // Klasa obiektow - `ala interface`
 export class Recipe {
