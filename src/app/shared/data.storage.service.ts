@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { Injectable } from '@angular/core';
 import { RecipeService } from './../recipes/recipe.service';
 import { HttpModule, Http, Response } from '@angular/http';
@@ -9,18 +10,28 @@ export class DataStorageService {
 
     httpURL = 'https://ng-recipe-book-6eaef.firebaseio.com';
 
+    // Token Params
+    auth: String = 'auth';
+    token: String;
+
     constructor(
         private http: Http,
-        private recipeService: RecipeService
+        private recipeService: RecipeService,
+        private authService: AuthService
     ) { }
 
     storeRecipes() {
-        return this.http.put(`${this.httpURL}/recipes.json`,
+        const token = this.authService.getToken();
+        const params = `?${this.auth}=${token}`;
+        return this.http.put(`${this.httpURL}/recipes.json${params}`,
             this.recipeService.getRecipes());
     }
 
     getRecipes() {
-        this.http.get(`${this.httpURL}/recipes.json`)
+        const token = this.authService.getToken();
+        const params = `?${this.auth}=${token}`;
+        console.log(params);
+        this.http.get(`${this.httpURL}/recipes.json${params}`)
             .map(
                 (response: Response) => {
                     const recipes: Recipe[] = response.json();

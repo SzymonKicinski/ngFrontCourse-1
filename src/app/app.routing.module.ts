@@ -1,3 +1,4 @@
+import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { NgModule } from '@angular/core';
 import { Route, Routes, RouterModule } from '@angular/router';
@@ -12,7 +13,8 @@ const appRoutes: Routes = [
         path: '', redirectTo: '/recipes', pathMatch: 'full'
     },
     {
-        path: 'recipes', component: RecipesComponent,
+        path: 'recipes',
+        component: RecipesComponent,
         children: [{
             path: '',
             component: RecipeStartComponent
@@ -28,15 +30,22 @@ const appRoutes: Routes = [
         }]
     },
     {
-        path: 'shopping-list', component: ShoppingListComponent
+        path: 'shopping-list',
+        component: ShoppingListComponent
+    },
+    {
+        path: 'signup',
+        component: SignupComponent
+    },
+    {
+        path: 'signin',
+        component: SigninComponent
     },
     {   // Wildcart
         path: '**',
         component: RecipesComponent
-    },
-    {
-        path: 'signup', component: SignupComponent
     }
+
 
 ];
 
