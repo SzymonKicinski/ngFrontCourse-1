@@ -1,3 +1,4 @@
+import { SignupComponent } from './auth/signup/signup.component';
 import { NgModule } from '@angular/core';
 import { Route, Routes, RouterModule } from '@angular/router';
 import { RecipesComponent } from './recipes/recipes.component';
@@ -13,13 +14,17 @@ const appRoutes: Routes = [
     {
         path: 'recipes', component: RecipesComponent,
         children: [{
-            path: '', component: RecipeStartComponent
+            path: '',
+            component: RecipeStartComponent
         }, {
-            path: 'new', component: RecipeEditComponent
+            path: 'new',
+            component: RecipeEditComponent
         }, {
-            path: ':id', component: RecipeDetailComponent
+            path: ':id',
+            component: RecipeDetailComponent
         }, {
-            path: ':id/edit', component: RecipeEditComponent
+            path: ':id/edit',
+            component: RecipeEditComponent
         }]
     },
     {
@@ -28,6 +33,9 @@ const appRoutes: Routes = [
     {   // Wildcart
         path: '**',
         component: RecipesComponent
+    },
+    {
+        path: 'signup', component: SignupComponent
     }
 
 ];
