@@ -35,4 +35,8 @@ export class HeaderComponent implements OnInit {
   onFeatchData() {
     this.dataStorageService.getRecipes();
   }
+
+  onLogout() {
+    this.authService.logout();
+  }
 }
