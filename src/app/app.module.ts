@@ -17,22 +17,29 @@ import { AppRoutingModule } from './app.routing.module';
 import { RecipesModule } from './recipes/recipes.module';
 import { SharedModule } from './shared/shared.module';
 import { RecipesRoutingModule } from './recipes/recipes.routing.module';
+import { HomeComponent } from './home/home.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+
+    // For eg lazy loading
+    HomeComponent
   ],
   imports: [
+    // Ng
     BrowserModule,
-
     FormsModule,
     HttpModule,
+    // recipe
     RecipesModule,
     RecipeModule,
+    // Shared Module
     SharedModule,
+    // Shopping
     ShoppingListModule,
     // Authentiaction
     AuthtModule,
