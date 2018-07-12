@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
       );
   }
 
-  onFeatchData() {
+  onFetchData() {
     this.dataStorageService.getRecipes();
   }
 
