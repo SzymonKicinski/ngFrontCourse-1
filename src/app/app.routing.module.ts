@@ -1,25 +1,23 @@
 import { HomeComponent } from './home/home.component';
-import { AuthGuard } from './auth/auth-guard.service';
+import { AuthGuard, CanLoadAuthGuard } from './auth/auth-guard.service';
 import { NgModule } from '@angular/core';
-import { Route, Routes, RouterModule } from '@angular/router';
+import { Route, Routes, RouterModule, CanLoad } from '@angular/router';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { RecipesComponent } from './recipes/recipes.component';
 
 const appRoutes: Routes = [
     // {
     //     path: '', redirectTo: '/recipes', pathMatch: 'full'
     // },
-    {
-        path: '', component: HomeComponent
-    },
+    { path: '', component: HomeComponent },
     {   // Wildcart
-        path: '**',
-        component: HomeComponent
+        path: '**', component: HomeComponent
     },
     {
-        path: 'shopping-list',
-        component: ShoppingListComponent
-    }
+        // path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule',
+        // CanLoad:[CanLoadAuthGuard]
+        path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'
+    },
+    { path: 'shopping-list', component: ShoppingListComponent }
 
 
 
@@ -33,6 +31,4 @@ const appRoutes: Routes = [
         )],
     exports: [RouterModule]
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule { }

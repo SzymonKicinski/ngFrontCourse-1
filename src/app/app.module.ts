@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AuthtModule } from './auth/auth.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { RecipeModule } from './recipes/recipe/recipe.module';
-import { AuthGuard } from './auth/auth-guard.service';
+import { AuthGuard, CanLoadAuthGuard } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth.service';
 import { DataStorageService } from './shared/data.storage.service';
 import { RecipeService } from './recipes/recipe.service';
@@ -14,9 +14,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app.routing.module';
-import { RecipesModule } from './recipes/recipes.module';
 import { SharedModule } from './shared/shared.module';
-import { RecipesRoutingModule } from './recipes/recipes.routing.module';
 import { HomeComponent } from './home/home.component';
 
 
@@ -35,7 +33,6 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     HttpModule,
     // recipe
-    RecipesModule,
     RecipeModule,
     // Shared Module
     SharedModule,
@@ -44,15 +41,15 @@ import { HomeComponent } from './home/home.component';
     // Authentiaction
     AuthtModule,
     // Routing
-    AppRoutingModule,
-    RecipesRoutingModule
+    AppRoutingModule
   ],
   providers: [
     ShoppingListService,
     RecipeService,
     DataStorageService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    CanLoadAuthGuard
   ],
   bootstrap: [AppComponent]
 })
